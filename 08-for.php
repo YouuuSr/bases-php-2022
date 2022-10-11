@@ -59,6 +59,27 @@ for ($i = -10; $i <=10 ; $i +=2){
         echo --$i; //0 car la décrémentation se fait avant l'affichage
 
     </code>
+    <?php
+    for ($i = 100 ; $i >= 0 ; $i--){
+        echo "$i ";
+    }
+    ?>
+    <br>
+
+    <?php
+    for($i = 2 ; $i <= 1000 ; $i+=2){
+        echo "$i ";
+    }
+    
+    ?>
+    <br>
+    <?php
+    for($i = 1 ; $i >= -99 ; $i-=2){
+        echo "$i ";
+    }
+    
+
+    ?>
 </pre>   
 </body>
 </html>
