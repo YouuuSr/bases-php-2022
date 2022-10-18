@@ -1,50 +1,3 @@
-<?php
-if(isset($_POST['first'],$_POST['choix'],$_POST['second'],)){
-    
-   
-    $nb1 =($_POST['first']); 
-    $choix = ($_POST['choix']);
-    $nb2 = ($_POST['second']);
-    if($nb1 != NULL && $nb2 != NULL) 
-    {
-        if($choix == 'division' && $nb2 == 0) 
-        {
-            echo 'On peut pas diviser par 0 voyons !';
-        }
-        else
-        {  
-            if($choix == 'addition')
-            {
-            $reponse = $nb1 + $nb2;
-            echo 'La somme de ces deux nombres est '.$reponse;
-            }
-             
-            if($choix == 'soustraction') 
-            {
-            $reponse = $nb1 - $nb2; 
-            echo 'Le résultat de cette soustraction est '.$reponse; 
-            }
-             
-            if($choix == 'multiplication')
-            {  
-            $reponse = $nb1 * $nb2;
-            echo 'La multiplication des deux nombres est '.$reponse;
-            }
-         
-            if($choix == 'division')
-            {
-            $reponse = $nb1 / $nb2;
-            echo 'Le résultat est '.$reponse;
-            }
-        }
-        }
-    else 
-    {
-    echo "Vous n'avez renseigner aucun valeur.";
-    }
-}
-
-?>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -70,20 +23,64 @@ Envoyez-moi le git pull request sur notre dépôt de la classe</p>
         </select>
         <input type="text" name="second" />
         <input type="submit" value="Calculer"/>
-    </form>
+     </form>
+    <br>
     <?php
+if(isset($_POST['first'],$_POST['choix'],$_POST['second'],)){
     
+   
+    $nb1 =($_POST['first']); 
+    $choix = ($_POST['choix']);
+    $nb2 = ($_POST['second']);
+    if($nb1 != NULL && $nb2 != NULL) 
+    {
+        if($choix == 'division' && $nb2 == 0) 
+        {
+            $reponse = 'On peut pas diviser par 0 !';
+            echo 'On peut pas diviser par 0 !<br>';
+            
+        }
+        elseif($choix == 'addition')
+        {
+        $reponse = $nb1 + $nb2;
+        echo 'Le résultat de cette addition est '.$reponse ;
+        }
+
+        elseif($choix == 'soustraction')
+        {
+        $reponse = $nb1 - $nb2;
+        echo 'Le résultat de cette soustraction est '.$reponse;
+        }
+
+        elseif($choix == 'multiplication')
+        {
+        $reponse = $nb1 * $nb2;
+        echo 'Le résultat est '.$reponse;
+        }
+
+        elseif($choix == 'division')
+        {
+        $reponse = $nb1 / $nb2;
+        echo 'Le résultat de cette division est '.$reponse;
+        }
+        else{
+            echo"Veuillez rentrez une valeur pour commencer le calcul";
+        }
+    }
+}
+?>
+    <hr>
+
+    <?php    
     if(isset($reponse)):
         echo $reponse;
     endif;
     ?>
+    
     <hr>
     <?php
     var_dump($_POST);
     ?>
-
-
-
-
+    
 </body>
 </html>
