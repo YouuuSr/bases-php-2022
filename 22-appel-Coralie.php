@@ -30,6 +30,7 @@ include "22-functions.php";
 <?php
     if(isset($_POST['premier'],$_POST['second'],)){
         echo calculBasic($_POST['premier'],$_POST['second'],$_POST['choix']);
+        
       
     }
  var_dump($_POST);

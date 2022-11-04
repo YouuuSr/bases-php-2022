@@ -7,17 +7,21 @@ function calculBasic($num1, $num2, $op = "+"){
     }
     switch ($op){
         case "*":
-            return $num1*$num2; // le return arrête la fonction et renvoie le résultat
+            $resultat1 = $num1*$num2 ;
+            return "<br> ".$num1.$op.$num2."=".$resultat1; // le return arrête la fonction et renvoie le résultat
+            
+            
             break; // break facultatif dans ce cas particulier
         case "-":
-            return $num1-$num2;
-            break;
+            $resultat2 = $num1-$num2 ;
+            return "<br> ".$num1.$op.$num2."=".$resultat2;
         case "/":
             // si division par 0 affichage de l'erreur et arrêt du script
             if($num2==0) return "Division par 0 interdite";
             return $num1/$num2;
             break;
         default:
-            return $num1+$num2;
+        $resultat3 = $num1*$num2 ;
+            return "<br> ".$num1.$op.$num2."=".$resultat3;
     }
 }
