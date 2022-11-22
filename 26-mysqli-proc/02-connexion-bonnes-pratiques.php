@@ -48,9 +48,9 @@ try {
 
     // affichage de l'erreur encodée en utf8 avec utf8_encode()
     echo utf8_encode($e->getMessage());
-    // affichage du code erreur, entre "" on doit utiliser pour la concaténation les {} quand on utilise des objets
-    // echo "<br> code erreur: ".$e->getCode()  ; // peut s'écrire:
-    echo "<br> code erreur: {$e->getCode()}" ;
+    //affichage du code erreur, entre "" on doit utiliser pour la concaténation les {} quand on utilise des objets
+     // echo "<br> code erreur : {$e->getCode()}"; // peut s'écrire: 
+     echo "<br> code erreur : {$e->getCode()}";
 }
     var_dump($mysqliConnect);
     ?>
