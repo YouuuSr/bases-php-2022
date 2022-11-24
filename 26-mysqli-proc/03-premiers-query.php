@@ -1,6 +1,7 @@
 <?php
 // Nos paramètres de connexion
 require_once "config.php";
+require_once 'functions.php';
 
 // Notre connexion    
 try {
@@ -27,6 +28,7 @@ $query = mysqli_query($mysqliConnect,$sql) or die("Erreur numéro ".mysqli_errno
 
 // on vérifie combien de résultats on a obtenu avec notre select
 $nbPays = mysqli_num_rows($query);
+
 
 
 ?>
@@ -57,7 +59,7 @@ else:
 
         // affichage des pays par ordre alphabétique
     ?>
-    <p><?=$item['nom']?> - <?=$item['population']?></p>
+    <p><?=$item['nom']?> - <?=perMillion($item['population'])?></p>
     <?php
     // fin de boucle
     endwhile;

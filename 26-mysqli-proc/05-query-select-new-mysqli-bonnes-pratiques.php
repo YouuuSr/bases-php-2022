@@ -1,0 +1,77 @@
+<?php
+require_once "config.php";
+require_once 'functions.php';
+
+
+// connexion ancienne version
+try{
+    // création d'une variable contenant la connexion
+    $db = @mysqli_connect(DB_HOST,DB_LOGIN,DB_PWD,DB_NAME,DB_PORT);
+
+    // si erreur
+    if(mysqli_connect_error()){
+        //sortie et affiche le numéro de l'erreur
+        die("Erreur numéro : ".mysqli_connect_errno()." Message : ".mysqli_connect_error());
+    }
+    // mettre le charset à la connexion
+    mysqli_set_charset($db, DB_CHARSET);
+
+}catch(Exception $e){
+    die("Numéro : ".$e ->getCode()." ".$e->getMessage());
+}
+//selectionne tout depuis la table stat ordonné
+$sql = "SELECT * FROM statistiques ORDER BY nom ASC";
+try{
+// requête sans try catch
+$query = mysqli_query($db,$sql) or die("Erreur numéro : ".mysqli_errno($db)." Message : ".mysqli_error($db));
+}catch(Exception $e){
+    die("Numéro : ".$e ->getCode()." ".$e->getMessage());  
+}
+//comptons le nombre de résultats (0)
+$nb = mysqli_num_rows($query);
+
+
+
+
+
+
+
+//si on a pas de résultats
+if(empty($nb)){
+    $affiche ="Pas encore de pays dans notre programme";
+    throw new Exception("Pas encore de pays dans notre programme");
+}else{
+    //mettre les résultats dans un tableau pour faire un foreach dans la vue
+    $datas= mysqli_fetch_all($query,MYSQLI_ASSOC);
+}
+//bonnes pratiques on vas vider les résultats
+mysqli_free_result($query);
+//bonnes pratiques on vas fermer la connexion
+mysqli_close($db);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+</head>
+<body>
+    <h1>Accueil</h1>
+    <h2>Nombre de pays : <?=$nb?></h2>
+    <?php
+    if(isset($affiche)):
+    ?>
+    <h3><?=$affiche?></h3>
+        <?php
+        else:
+            foreach($datas as $fifa):
+            ?>
+            <p><strong><?=$fifa['nom']?> <?=perMillion($fifa['population'])?></strong> d'habitants</p>
+            <?php
+            endforeach;
+            endif;
+            ?>
+</body>
+</html>
